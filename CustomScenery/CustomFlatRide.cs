@@ -24,19 +24,6 @@ public class CustomFlatRide : FlatRide
         {
             m.GetAxis(this.gameObject);
         }
-        Debug.Log("-=====[Starting Ride]=====-");
-        Debug.Log("-=====[Phases]=====-");
-        foreach (Phase p in phases)
-        {
-            Debug.Log("---=[Phase]=---");
-            Debug.Log("--=[Events]=--");
-            foreach (RideAnimationEvent RAE in p.Events)
-            {
-                Debug.Log("* Event: " + RAE.EventName);
-            }
-
-
-        }
 
         base.onStartRide();
         foreach (motor m in motors)
