@@ -47,7 +47,7 @@ public class FromToMove : RideAnimationEvent
         {
             
             
-            rotator.tick(Time.realtimeSinceStartup - lastTime);
+            rotator.tick(Time.deltaTime);
             lastTime = Time.realtimeSinceStartup;
             if (rotator.reachedTarget())
             {

@@ -43,7 +43,7 @@ public class ToFromRot : RideAnimationEvent
         {
             
             
-            rotator.tick(Time.realtimeSinceStartup - lastTime);
+            rotator.tick(Time.deltaTime);
             lastTime = Time.realtimeSinceStartup;
             if (rotator.isStopped())
             {

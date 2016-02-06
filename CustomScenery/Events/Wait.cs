@@ -8,6 +8,7 @@ public class Wait : RideAnimationEvent
     public float seconds;
     [SerializeField]
     float timeLimit;
+    float time;
     public override string EventName
     {
         get
@@ -19,13 +20,15 @@ public class Wait : RideAnimationEvent
 
     public override void Enter()
     {
-        
-        timeLimit = Time.realtimeSinceStartup + seconds;
+        timeLimit =  seconds;
+        time = 0;
         base.Enter();
     }
     public override void Run()
     {
-        if (Time.realtimeSinceStartup > timeLimit)
+
+        time += Time.deltaTime;
+        if (time > timeLimit)
         {
 
             done = true;
