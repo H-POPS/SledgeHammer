@@ -16,8 +16,9 @@ public class FlatRideLoader
         {
             switch(motorN.Name)
             {
+                
                 case "Rotator":
-                    RotatorHP R = ScriptableObject.CreateInstance<RotatorHP>();
+                    RotatorHP R = GO.AddComponent<RotatorHP>();
                     R.Identifier = motorN["Identifier"].InnerText;
                     R.axisPath = motorN["axis"].InnerText;
                     R.axis = GO.transform.FindChild(motorN["axis"].InnerText);
@@ -27,7 +28,7 @@ public class FlatRideLoader
                     motors.Add(R);
                     break;
                 case "RotateBetween":
-                    RotateBetweenHP RB = ScriptableObject.CreateInstance<RotateBetweenHP>();
+                    RotateBetweenHP RB = GO.AddComponent<RotateBetweenHP>();
                     RB.Identifier = motorN["Identifier"].InnerText;
                     RB.axisPath = motorN["axis"].InnerText;
                     RB.axis = GO.transform.FindChild(motorN["axis"].InnerText);
@@ -36,7 +37,7 @@ public class FlatRideLoader
                     motors.Add(RB);
                     break;
                 case "Mover":
-                    MoverHP M = ScriptableObject.CreateInstance<MoverHP>();
+                    MoverHP M = GO.AddComponent<MoverHP>();
                     M.Identifier = motorN["Identifier"].InnerText;
                     M.axisPath = motorN["axis"].InnerText;
                     M.axis = GO.transform.FindChild(motorN["axis"].InnerText);
@@ -45,7 +46,7 @@ public class FlatRideLoader
                     motors.Add(M);
                     break;
                 case "MultipleRotations":
-                    MultipleRotationsHP MR = ScriptableObject.CreateInstance<MultipleRotationsHP>();
+                    MultipleRotationsHP MR = GO.AddComponent<MultipleRotationsHP>();
                     MR.Identifier = motorN["Identifier"].InnerText;
                     MR.axisPath = motorN["MainAxis"].InnerText;
                     XmlNodeList axisNs = motorN.SelectNodes("axis");
@@ -68,68 +69,68 @@ public class FlatRideLoader
 
         foreach (XmlNode PhaseN in ObjNode.SelectSingleNode("Animation/phases").ChildNodes)
         {
-            
-            Phase phase = ScriptableObject.CreateInstance <Phase>();
-            foreach(XmlNode EventN in PhaseN.SelectSingleNode("events").ChildNodes)
+
+            Phase phase = GO.AddComponent<Phase>();
+            foreach (XmlNode EventN in PhaseN.SelectSingleNode("events").ChildNodes)
             {
-                
+
                 switch (EventN.Name)
                 {
                     case "Wait":
-                        Wait W = ScriptableObject.CreateInstance<Wait>();
+                        Wait W = GO.AddComponent<Wait>();
                         W.seconds = float.Parse(EventN["Seconds"].InnerText);
                         phase.Events.Add(W);
                         break;
                     case "StartRotator":
-                        StartRotator SR = ScriptableObject.CreateInstance<StartRotator>();
+                        StartRotator SR = GO.AddComponent<StartRotator>();
                         SR.identifierMotor = EventN["Identifier"].InnerText;
                         phase.Events.Add(SR);
                         break;
                     case "SpinRotator":
-                        SpinRotater SpR = ScriptableObject.CreateInstance<SpinRotater>();
+                        SpinRotater SpR = GO.AddComponent<SpinRotater>();
                         SpR.identifierMotor = EventN["Identifier"].InnerText;
                         SpR.spin = Boolean.Parse(EventN["spin"].InnerText);
                         SpR.spins = Int32.Parse(EventN["spins"].InnerText);
                         phase.Events.Add(SpR);
                         break;
                     case "StopRotator":
-                        StopRotator StR = ScriptableObject.CreateInstance<StopRotator>();
+                        StopRotator StR = GO.AddComponent<StopRotator>();
                         StR.identifierMotor = EventN["Identifier"].InnerText;
                         phase.Events.Add(StR);
                         break;
                     case "FromToRot":
-                        FromToRot FTR = ScriptableObject.CreateInstance<FromToRot>();
+                        FromToRot FTR = GO.AddComponent<FromToRot>();
                         FTR.identifierMotor = EventN["Identifier"].InnerText;
                         phase.Events.Add(FTR);
                         break;
                     case "ToFromRot":
-                        ToFromRot TFR = ScriptableObject.CreateInstance<ToFromRot>();
+                        ToFromRot TFR = GO.AddComponent<ToFromRot>();
                         TFR.identifierMotor = EventN["Identifier"].InnerText;
                         phase.Events.Add(TFR);
                         break;
                     case "FromToMove":
-                        FromToMove FTM = ScriptableObject.CreateInstance<FromToMove>();
+                        FromToMove FTM = GO.AddComponent<FromToMove>();
                         FTM.identifierMotor = EventN["Identifier"].InnerText;
                         phase.Events.Add(FTM);
                         break;
                     case "ToFromMove":
-                        ToFromMove TFM = ScriptableObject.CreateInstance<ToFromMove>();
+                        ToFromMove TFM = GO.AddComponent<ToFromMove>();
                         TFM.identifierMotor = EventN["Identifier"].InnerText;
                         phase.Events.Add(TFM);
                         break;
                     case "ApplyRotation":
-                        ApplyRotation AR = ScriptableObject.CreateInstance<ApplyRotation>();
+                        ApplyRotation AR = GO.AddComponent<ApplyRotation>();
                         AR.identifierMotor = EventN["Identifier"].InnerText;
                         phase.Events.Add(AR);
                         break;
 
                 }
             }
-            
+
             Phases.Add(phase);
         }
-            return Phases;
-            
+        return Phases;
+
         throw new NotImplementedException();
     }
 

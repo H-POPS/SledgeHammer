@@ -85,7 +85,7 @@ public class CustomFlatRide : FlatRide
 }
 
 
-public class Phase : ScriptableObject
+public class Phase : MonoBehaviour
 {
     [SerializeField]
     public List<RideAnimationEvent> Events = new List<RideAnimationEvent>();
@@ -131,7 +131,7 @@ public class Phase : ScriptableObject
     }
 
 }
-public class RideAnimationEvent : ScriptableObject
+public class RideAnimationEvent : MonoBehaviour
 {
     public bool done = false;
     public bool showSettings;
@@ -165,7 +165,7 @@ public class RideAnimationEvent : ScriptableObject
     }
 
 }
-public class motor : ScriptableObject
+public class motor : MonoBehaviour
 {
     public bool showSettings;
     public string Identifier = "";
